@@ -65,7 +65,7 @@ function nav(path) {
         }
     }
     html += `<div class="mdui-toolbar-spacer"></div>
-    <a href="https://github.com/kulokenci/goindex-drive" target="_blank" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-tooltip="{content: 'GoIndex Drive on Github'}">
+    <a href="https://github.com/omssp/goindex-drive" target="_blank" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-tooltip="{content: 'omssp Github'}">
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve" class="mdui-icon" style="width: 24px;height:24px;">
         <path fill-rule="evenodd" clip-rule="evenodd" fill="#ffffff" d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5
 	c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1
@@ -79,7 +79,8 @@ function nav(path) {
 }
 
 // List files
-var files = [];
+var _files = [];
+var _path = "";
 
 function list(path) {
     var content = "";
@@ -87,15 +88,15 @@ function list(path) {
 	<div id="head_md" class="mdui-typo" style="display:none;padding: 20px 0;"></div>`;
     if (search) {
         if (dark) {
-            content += `<div class="mdui-textfield"><input class="mdui-textfield-input mdui-text-color-white-text" id="searchInput" onkeyup="searchOnlyActiveDir()" type="text" placeholder="Type to search.."></input></div>`;
-        } else { content += `<div class="mdui-textfield"><input class="mdui-textfield-input" id="searchInput" onkeyup="searchOnlyActiveDir()" type="text" placeholder="Type to search.."></input></div>`; }
+            content += `<div class="mdui-textfield"><input class="mdui-textfield-input mdui-text-color-white-text" id="searchInput" onkeyup="searchOnlyActiveDir()" type="text" placeholder="Type to search..." style="cursor: auto"></input></div>`;
+        } else { content += `<div class="mdui-textfield"><input class="mdui-textfield-input" id="searchInput" onkeyup="searchOnlyActiveDir()" type="text" placeholder="Type to search..." style="cursor: auto"></input></div>`; }
     }
     content += `<div class="mdui-row"> 
 	  <ul class="mdui-list"> 
-	   <li class="mdui-list-item th"> 
-	    <div class="mdui-col-xs-12 mdui-col-sm-7"> File <i class="mdui-icon material-icons icon-sort" data-sort="name" data-order="more">expand_more</i> </div> 
-	    <div class="mdui-col-sm-3 mdui-text-right"> Modified Time <i class="mdui-icon material-icons icon-sort" data-sort="date" data-order="downward">expand_more</i> </div> 
-	    <div class="mdui-col-sm-2 mdui-text-right"> Size <i class="mdui-icon material-icons icon-sort" data-sort="size" data-order="downward">expand_more</i> </div> 
+	   <li class="mdui-list-item th" style="cursor: auto"> 
+	    <div class="mdui-col-xs-12 mdui-col-sm-7" > File <i class="mdui-icon material-icons icon-sort" data-sort="name" data-order="more" id="nameSort" style="cursor: pointer">sort</i> </div> 
+	    <div class="mdui-col-sm-3 mdui-text-right"> Modified Time <i class="mdui-icon material-icons icon-sort" data-sort="date" data-order="downward" id="dateSort" style="cursor: pointer">sort</i> </div> 
+	    <div class="mdui-col-sm-2 mdui-text-right"> Size <i class="mdui-icon material-icons icon-sort" data-sort="size" data-order="downward" id="sizeSort" style="cursor: pointer">sort</i> </div> 
 	    </li> 
 	  </ul> 
 	 </div> 
@@ -112,9 +113,9 @@ function list(path) {
     $.post(path, function(data, status) {
         var obj = jQuery.parseJSON(data);
         if (typeof obj != 'null') {
-            files = obj.files;
-            files.sort((function(a, b) { return new Date(b.modifiedTime) - new Date(a.modifiedTime) }))
-            list_files(path, files);
+            _files = obj.files;
+            _path = path;
+            list_files(path, _files);
         }
     });
 }
@@ -128,16 +129,16 @@ function list_files(path, files) {
             item['size'] = "";
         }
 
-        item['modifiedTime'] = utc2jakarta(item['modifiedTime']);
-        item['size'] = formatFileSize(item['size']);
+        let mtime = utc2jakarta(item['modifiedTime']);
+        let msize = formatFileSize(item['size']);
         if (item['mimeType'] == 'application/vnd.google-apps.folder') {
             html += `<li class="mdui-list-item mdui-ripple"><a href="${p}" class="folder">
 	            <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 	            <i class="mdui-icon material-icons">folder_open</i>
 	              ${item.name}
 	            </div>
-	            <div class="mdui-col-sm-3 mdui-text-right">${item['modifiedTime']}</div>
-	            <div class="mdui-col-sm-2 mdui-text-right">${item['size']}</div>
+	            <div class="mdui-col-sm-3 mdui-text-right">${mtime}</div>
+	            <div class="mdui-col-sm-2 mdui-text-right">${msize}</div>
 	            </a>
 	        </li>`;
         } else {
@@ -163,8 +164,8 @@ function list_files(path, files) {
 	          <i class="mdui-icon material-icons">insert_drive_file</i>
 	            ${item.name}
 	          </div>
-	          <div class="mdui-col-sm-3 mdui-text-right">${item['modifiedTime']}</div>
-	          <div class="mdui-col-sm-2 mdui-text-right">${item['size']}</div>
+	          <div class="mdui-col-sm-3 mdui-text-right">${mtime}</div>
+	          <div class="mdui-col-sm-2 mdui-text-right">${msize}</div>
 	          </a>
 	      </li>`;
         }
@@ -450,4 +451,27 @@ $(function() {
     });
 
     render(path);
+});
+
+$(document).ready(function() {
+    $('#nameSort, #dateSort, #sizeSort').on('click', function() {
+        let who = $(this).attr('id');
+        let how = $(this).html();
+        $('#nameSort, #dateSort, #sizeSort').html('sort');
+        if (who == "dateSort") {
+            _files.sort((function(a, b) { return new Date(b.modifiedTime) - new Date(a.modifiedTime) }));
+        } else if (who == "nameSort") {
+            // _files.sort((b, a) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)); // folders not seperate
+            _files.sort((a, b) => (a.size && !b.size) ? 0 : (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+        } else if (who == "sizeSort") {
+            _files.sort((a, b) => (a.size - b.size))
+        }
+        if (how == "arrow_downward") {
+            _files.reverse(); // descending
+            $("#" + who).html('arrow_upward');
+        } else {
+            $("#" + who).html('arrow_downward');
+        }
+        list_files(_path, _files);
+    });
 });
