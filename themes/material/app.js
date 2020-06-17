@@ -79,6 +79,8 @@ function nav(path) {
 }
 
 // List files
+var files = [];
+
 function list(path) {
     var content = "";
     content += `
@@ -119,7 +121,9 @@ function list(path) {
     $.post(path, function(data, status) {
         var obj = jQuery.parseJSON(data);
         if (typeof obj != 'null') {
-            list_files(path, obj.files);
+            files = obj.files;
+            files.sort((function(a, b) { return new Date(b.modifiedTime) - new Date(a.modifiedTime) }))
+            list_files(path, files);
         }
     });
 }
