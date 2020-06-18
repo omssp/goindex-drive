@@ -126,7 +126,7 @@ function list(path) {
             _files.sort((function(a, b) { return new Date(b.modifiedTime) - new Date(a.modifiedTime) }));
         } else if (who == "nameSort") {
             // _files.sort((b, a) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)); // folders not seperate
-            _files.sort((a, b) => (a.size && !b.size) ? 0 : (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+            _files.sort((b, a) => (a.size && !b.size) ? 0 : (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
         } else if (who == "sizeSort") {
             _files.sort((a, b) => (a.size - b.size))
         }
