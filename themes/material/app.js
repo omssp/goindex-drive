@@ -1,3 +1,4 @@
+document.write('<script type="text/javascript"> function copyIT(link) { const el = document.createElement("textarea"); el.value = encodeURI(link); el.setAttribute("readonly", ""); el.style.position = "absolute"; el.style.left = "-9999px"; document.body.appendChild(el); const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false; el.select(); document.execCommand("copy"); document.body.removeChild(el); if (selected) { document.getSelection().removeAllRanges(); document.getSelection().addRange(selected); } } function vibrate(duration) { (navigator.vibrate) ? navigator.vibrate(duration) : ""; } </script>');
 // load in head necessary static
 document.write('<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">');
 document.write('<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/plyr/3.6.2/plyr.css">');
@@ -179,15 +180,34 @@ function list_files(path, files) {
                 p += "?a=view";
                 c += " view";
             }
-            html += `<li class="mdui-list-item file mdui-ripple" target="_blank"><a gd-type="${item.mimeType}" href="${p}" class="${c}">
-	          <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
-	          <i class="mdui-icon material-icons">insert_drive_file</i>
-	            ${item.name}
-	          </div>
-	          <div class="mdui-col-sm-3 mdui-text-right">${mtime}</div>
-	          <div class="mdui-col-sm-2 mdui-text-right">${msize}</div>
-	          </a>
-	      </li>`;
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent) && ("|mp4|webm|avi|m4a|mp3|wav|ogg|mpg|mpeg|mkv|mov|wmv|asf|ts|flv|".indexOf(`|${ext}|`) >= 0)) {
+                var url_m = window.location.origin + path + item.name;
+
+                html += `<li class="mdui-list-item file mdui-ripple" target="_blank">
+                    <a href="intent:${url_m}#Intent;action=android.intent.action.VIEW;type=video/*;S.title=${item.name};end" onClick="copyIT('${url_m}'); vibrate(50);" style="line-height: 1; width: fit-content; text-align: center;">
+                        <i class="mdui-icon material-icons">play_circle_filled</i>
+                        <span class="size-tooltip" style="display: block; font-size: xx-small;margin: 2px 2px;">${msize.replace(' ', '')}</span>
+                    </a>
+                    <a gd-type="${item.mimeType}" href="${p}" class="${c}">
+                    <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
+                        ${item.name}
+                    </div>
+                    <div class="mdui-col-sm-3 mdui-text-right">${mtime}</div>
+                    <div class="mdui-col-sm-2 mdui-text-right">${msize}</div>
+                    </a>
+                </li>`;
+            } else {
+                html += `<li class="mdui-list-item file mdui-ripple" target="_blank">
+                    <a gd-type="${item.mimeType}" href="${p}" class="${c}">
+                    <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
+                    <i class="mdui-icon material-icons">insert_drive_file</i>
+                        ${item.name}
+                    </div>
+                    <div class="mdui-col-sm-3 mdui-text-right">${mtime}</div>
+                    <div class="mdui-col-sm-2 mdui-text-right">${msize}</div>
+                    </a>
+                </li>`;
+            }
         }
     }
     $('#list').html(html);
