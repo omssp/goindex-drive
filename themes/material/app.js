@@ -181,7 +181,7 @@ function list_files(path, files) {
                 c += " view";
             }
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent) && ("|mp4|webm|avi|m4a|mp3|wav|ogg|mpg|mpeg|mkv|mov|wmv|asf|ts|flv|".indexOf(`|${ext}|`) >= 0)) {
-                var url_m = window.location.origin + path + item.name;
+                var url_m = window.location.origin + path + encodeURIComponent(item.name);
 
                 html += `<li class="mdui-list-item file mdui-ripple" target="_blank">
                     <a href="intent:${url_m}#Intent;action=android.intent.action.VIEW;type=video/*;S.title=${item.name};end" onClick="copyIT('${url_m}'); vibrate(50);" style="line-height: 1; width: fit-content; text-align: center;">
