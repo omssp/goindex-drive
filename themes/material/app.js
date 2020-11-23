@@ -131,11 +131,11 @@ function list(path) {
         } else if (who == "sizeSort") {
             _files.sort((a, b) => (a.size - b.size))
         }
-        if (how == "arrow_downward") {
-            _files.reverse(); // descending
-            $("#" + who).html('arrow_upward');
-        } else {
+        if (how == "arrow_upward") {
             $("#" + who).html('arrow_downward');
+        } else {
+	    _files.reverse(); // descending
+            $("#" + who).html('arrow_upward');
         }
         list_files(_path, _files);
     });
