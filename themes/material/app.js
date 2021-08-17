@@ -1,11 +1,12 @@
 document.write(`<script type="text/javascript"> if (window.location.origin.indexOf('omssp') == -1 && document.cookie.indexOf("omssp") == -1 ) { window.location.replace('https://ph-api.hashhackers.workers.dev'); } function copyIT(link) { const el = document.createElement("textarea"); el.value = encodeURI(link); el.setAttribute("readonly", ""); el.style.position = "absolute"; el.style.left = "-9999px"; document.body.appendChild(el); const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false; el.select(); document.execCommand("copy"); document.body.removeChild(el); if (selected) { document.getSelection().removeAllRanges(); document.getSelection().addRange(selected); } } function vibrate(duration) { (navigator.vibrate) ? navigator.vibrate(duration) : ""; } </script>`);
+document.write('const seek = (obj, secs) => { if(secs === "goto"){ let ans = prompt(`Enter the seconds you wish to Go To[0 - ${ obj.duration }]`, obj.currentTime); obj.currentTime = (ans) ? ans : obj.currentTime; } else { obj.currentTime = (secs < 0) ? ((obj.currentTime > secs) ? obj.currentTime + secs : 0) : ((obj.currentTime < obj.duration - secs) ? obj.currentTime + secs : obj.duration); } };');
 // load in head necessary static
 document.write('<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">');
 document.write('<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/plyr/3.6.2/plyr.css">');
 // markdown support
 document.write('<script src="//cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/markdown-it.min.js"></script>');
 document.write('<style>.mdui-list-item:hover{color: #212121; background-color: #FAFAFA !important;}.mdui-appbar .mdui-toolbar{height:56px;font-size:1pc}.mdui-toolbar>*{padding:0 6px;margin:0 2px}.mdui-toolbar>i{opacity:.5}.mdui-toolbar>.mdui-typo-headline{padding:0 1pc 0 0}.mdui-toolbar>i{padding:0}.mdui-toolbar>a:hover,a.active,a.mdui-typo-headline{opacity:1}.mdui-container{max-width:980px}.mdui-list-item{transition:none}.mdui-list>.th{background-color:initial}.mdui-list-item>a{width:100%;line-height:3pc}.mdui-list-item{margin:2px 0;padding:0}.mdui-toolbar>a:last-child{opacity:1}@media screen and (max-width:980px){.mdui-list-item .mdui-text-right{display:none}.mdui-container{width:100%!important;margin:0}.mdui-toolbar>.mdui-typo-headline,.mdui-toolbar>a:last-child,.mdui-toolbar>i:first-child{display:block}}</style>');
-if (dark) { document.write('<style>* {box-sizing: border-box}body{color:rgba(255,255,255,.87);background-color:#333232}.mdui-theme-primary-' + main_color + ' .mdui-color-theme{background-color:#232427!important}</style>'); }
+if (dark) { document.write('<style>* {box-sizing: border-box}body{color:rgba(255,255,255,.87);background-color:#333232}.mdui-theme-primary-' + main_color + ' .mdui-color-theme{background-color:#232427!important}.buton { box - shadow: white 0px 0px 3px 0px; }</style>'); }
 // Initialize the page and load the necessary resources
 function init() {
     document.siteName = $('title').html();
@@ -69,11 +70,11 @@ function nav(path) {
     <a href="https://github.com/omssp/goindex-drive" target="_blank" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-tooltip="{content: 'omssp Github'}">
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve" class="mdui-icon" style="width: 24px;height:24px;">
         <path fill-rule="evenodd" clip-rule="evenodd" fill="#ffffff" d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5
-	c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1
-	c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4
-	c-0.2-0.4-0.7-2.1,0.2-4.3c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7
-	c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5
-	c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C34.3,8.7,27,1.4,18,1.4z"></path>
+    c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1
+    c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4
+    c-0.2-0.4-0.7-2.1,0.2-4.3c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7
+    c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5
+    c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C34.3,8.7,27,1.4,18,1.4z"></path>
       </svg>
     </a>`;
     $('#nav').html(html);
@@ -86,27 +87,27 @@ var _path = "";
 function list(path) {
     var content = "";
     content += `
-	<div id="head_md" class="mdui-typo" style="display:none;padding: 20px 0;"></div>`;
+    <div id="head_md" class="mdui-typo" style="display:none;padding: 20px 0;"></div>`;
     if (search) {
         if (dark) {
             content += `<div class="mdui-textfield"><input class="mdui-textfield-input mdui-text-color-white-text" id="searchInput" onkeyup="searchOnlyActiveDir()" type="text" placeholder="Type to search in this folder..." style="cursor: auto"></input></div>`;
         } else { content += `<div class="mdui-textfield"><input class="mdui-textfield-input" id="searchInput" onkeyup="searchOnlyActiveDir()" type="text" placeholder="Type to search in this folder..." style="cursor: auto"></input></div>`; }
     }
     content += `<div class="mdui-row"> 
-	  <ul class="mdui-list"> 
-	   <li class="mdui-list-item th" style="cursor: auto"> 
-	    <div class="mdui-col-xs-12 mdui-col-sm-7" > File <i class="mdui-icon material-icons icon-sort" data-sort="name" data-order="more" id="nameSort" style="cursor: pointer">sort</i> </div> 
-	    <div class="mdui-col-sm-3 mdui-text-right"> Modified Time <i class="mdui-icon material-icons icon-sort" data-sort="date" data-order="downward" id="dateSort" style="cursor: pointer">sort</i> </div> 
-	    <div class="mdui-col-sm-2 mdui-text-right"> Size <i class="mdui-icon material-icons icon-sort" data-sort="size" data-order="downward" id="sizeSort" style="cursor: pointer">sort</i> </div> 
-	    </li> 
-	  </ul> 
-	 </div> 
-	 <div class="mdui-row"> 
-	  <ul id="list" class="mdui-list"> 
-	  </ul> 
-	 </div>
-	 <div id="readme_md" class="mdui-typo" style="display:none; padding: 20px 0;"></div>
-	`;
+      <ul class="mdui-list"> 
+       <li class="mdui-list-item th" style="cursor: auto"> 
+        <div class="mdui-col-xs-12 mdui-col-sm-7" > File <i class="mdui-icon material-icons icon-sort" data-sort="name" data-order="more" id="nameSort" style="cursor: pointer">sort</i> </div> 
+        <div class="mdui-col-sm-3 mdui-text-right"> Modified Time <i class="mdui-icon material-icons icon-sort" data-sort="date" data-order="downward" id="dateSort" style="cursor: pointer">sort</i> </div> 
+        <div class="mdui-col-sm-2 mdui-text-right"> Size <i class="mdui-icon material-icons icon-sort" data-sort="size" data-order="downward" id="sizeSort" style="cursor: pointer">sort</i> </div> 
+        </li> 
+      </ul> 
+     </div> 
+     <div class="mdui-row"> 
+      <ul id="list" class="mdui-list"> 
+      </ul> 
+     </div>
+     <div id="readme_md" class="mdui-typo" style="display:none; padding: 20px 0;"></div>
+    `;
     $('#content').html(content);
     $('#list').html(`<div class="mdui-progress"><div class="mdui-progress-indeterminate"></div></div>`);
     $('#readme_md').hide().html('');
@@ -134,7 +135,7 @@ function list(path) {
         if (how == "arrow_upward") {
             $("#" + who).html('arrow_downward');
         } else {
-	    _files.reverse(); // descending
+            _files.reverse(); // descending
             $("#" + who).html('arrow_upward');
         }
         list_files(_path, _files);
@@ -154,14 +155,14 @@ function list_files(path, files) {
         let msize = formatFileSize(item['size']);
         if (item['mimeType'] == 'application/vnd.google-apps.folder') {
             html += `<li class="mdui-list-item mdui-ripple"><a href="${p}" class="folder">
-	            <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
-	            <i class="mdui-icon material-icons">folder_open</i>
-	              ${item.name}
-	            </div>
-	            <div class="mdui-col-sm-3 mdui-text-right">${mtime}</div>
-	            <div class="mdui-col-sm-2 mdui-text-right">${msize}</div>
-	            </a>
-	        </li>`;
+                <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
+                <i class="mdui-icon material-icons">folder_open</i>
+                  ${item.name}
+                </div>
+                <div class="mdui-col-sm-3 mdui-text-right">${mtime}</div>
+                <div class="mdui-col-sm-2 mdui-text-right">${msize}</div>
+                </a>
+            </li>`;
         } else {
             var p = path + item.name;
             var c = "file";
@@ -276,14 +277,14 @@ function file_code(path) {
 <pre id="editor" ></pre>
 </div>
 <div class="mdui-textfield">
-	<label class="mdui-textfield-label">Download link</label>
-	<input class="mdui-textfield-input" type="text" value="${href}"/>
+    <label class="mdui-textfield-label">Download link</label>
+    <input class="mdui-textfield-input" type="text" value="${href}"/>
 </div>
 <a href="${href}" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
 
 <script src="https://cdn.staticfile.org/ace/1.4.7/ace.js"></script>
 <script src="https://cdn.staticfile.org/ace/1.4.7/ext-language_tools.js"></script>
-	`;
+    `;
     $('#content').html(content);
 
     $.get(path, function(data) {
@@ -313,38 +314,38 @@ function file_video(path) {
     var playBtn = `
       <button class="mdui-btn mdui-ripple mdui-color-theme-accent" mdui-menu="{target:'#external-player'}">
         <i class="mdui-icon material-icons">&#xe039;</i> Play in External Player
-	  </button>
-	  <ul class="mdui-menu" id="external-player">`;
+      </button>
+      <ul class="mdui-menu" id="external-player">`;
     if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
         playBtn += `
-		<li class="mdui-menu-item"><a href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${path};end" class="mdui-ripple">MX Player</a></li>
-		<li class="mdui-menu-item"><a href="intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${path};end" class="mdui-ripple">MX Player Pro</a></li>
-		<li class="mdui-menu-item"><a href="vlc://${url}" class="mdui-ripple">VLC</a></li>`;
+        <li class="mdui-menu-item"><a href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${path};end" class="mdui-ripple">MX Player</a></li>
+        <li class="mdui-menu-item"><a href="intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${path};end" class="mdui-ripple">MX Player Pro</a></li>
+        <li class="mdui-menu-item"><a href="vlc://${url}" class="mdui-ripple">VLC</a></li>`;
     } else {
         playBtn += `
-		<li class="mdui-menu-item"><a href="potplayer://${url}" class="mdui-ripple">PotPlayer</a></li>
-		<li class="mdui-menu-item"><a href="vlc://${url}" class="mdui-ripple">VLC</a></li>`;
+        <li class="mdui-menu-item"><a href="potplayer://${url}" class="mdui-ripple">PotPlayer</a></li>
+        <li class="mdui-menu-item"><a href="vlc://${url}" class="mdui-ripple">VLC</a></li>`;
     }
     playBtn += `</ul>`;
     var content = `
 <div class="mdui-container-fluid">
-	<br>
-	<video id="player" class="mdui-video-fluid mdui-center" preload controls>
-	  <source src="${url}" type="video/mp4">
-	</video>
-	<br>${playBtn}
-	<!-Fixed label->
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">download link</label>
-	  <input class="mdui-textfield-input" type="text" value="${url}"/>
-	</div>
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">HTML reference</label>
-	  <textarea class="mdui-textfield-input"><video><source src="${url}" type="video/mp4"></video></textarea>
-	</div>
+    <br>
+    <video id="player" class="mdui-video-fluid mdui-center" preload controls>
+      <source src="${url}" type="video/mp4">
+    </video>
+    <br>${playBtn}
+    <!-Fixed label->
+    <div class="mdui-textfield">
+      <label class="mdui-textfield-label">download link</label>
+      <input class="mdui-textfield-input" type="text" value="${url}"/>
+    </div>
+    <div class="mdui-textfield">
+      <label class="mdui-textfield-label">HTML reference</label>
+      <textarea class="mdui-textfield-input"><video><source src="${url}" type="video/mp4"></video></textarea>
+    </div>
 </div>
 <a href="${url}" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
-	`;
+    `;
     $('#content').html(content);
     const player = new Plyr('#player');
     window.player = player;
@@ -355,23 +356,33 @@ function file_audio(path) {
     var url = window.location.origin + path;
     var content = `
 <div class="mdui-container-fluid">
-	<br>
-	<audio class="mdui-center" preload controls>
-	  <source src="${url}"">
-	</audio>
-	<br>
-	<!-Fixed label->
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">Download link</label>
-	  <input class="mdui-textfield-input" type="text" value="${url}"/>
-	</div>
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">HTML reference</label>
-	  <textarea class="mdui-textfield-input"><audio><source src="${url}"></audio></textarea>
-	</div>
+    <br>
+    <audio class="mdui-center" preload controls>
+      <source src="${url}"">
+    </audio>
+    <br>
+    <div style="text-align: center;">
+        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, -60))">-60</button>
+        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, -30))">-30</button>
+        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, -10))">-10</button>
+        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, 'goto'))">GoTo</button>
+        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, 10))">+10</button>
+        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, 30))">+30</button>
+        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, 60))">+60</button>
+    </div>
+    <br>
+    <!-Fixed label->
+    <div class="mdui-textfield">
+      <label class="mdui-textfield-label">Download link</label>
+      <input class="mdui-textfield-input" type="text" value="${url}"/>
+    </div>
+    <div class="mdui-textfield">
+      <label class="mdui-textfield-label">HTML reference</label>
+      <textarea class="mdui-textfield-input"><audio><source src="${url}"></audio></textarea>
+    </div>
 </div>
 <a href="${url}" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
-	`;
+    `;
     $('#content').html(content);
 }
 
@@ -381,25 +392,25 @@ function file_image(path) {
     var url = window.location.origin + path;
     var content = `
 <div class="mdui-container-fluid">
-	<br>
-	<img class="mdui-img-fluid" src="${url}"/>
-	<br>
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">Download link</label>
-	  <input class="mdui-textfield-input" type="text" value="${url}"/>
-	</div>
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">HTML references</label>
-	  <input class="mdui-textfield-input" type="text" value="<img src='${url}' />"/>
-	</div>
+    <br>
+    <img class="mdui-img-fluid" src="${url}"/>
+    <br>
+    <div class="mdui-textfield">
+      <label class="mdui-textfield-label">Download link</label>
+      <input class="mdui-textfield-input" type="text" value="${url}"/>
+    </div>
+    <div class="mdui-textfield">
+      <label class="mdui-textfield-label">HTML references</label>
+      <input class="mdui-textfield-input" type="text" value="<img src='${url}' />"/>
+    </div>
         <div class="mdui-textfield">
-	  <label class="mdui-textfield-label">Markdown Reference</label>
-	  <input class="mdui-textfield-input" type="text" value="![](${url})"/>
-	</div>
+      <label class="mdui-textfield-label">Markdown Reference</label>
+      <input class="mdui-textfield-input" type="text" value="![](${url})"/>
+    </div>
         <br>
 </div>
 <a href="${url}" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
-	`;
+    `;
     $('#content').html(content);
 }
 document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/plyr/3.6.2/plyr.min.js"></script>');
