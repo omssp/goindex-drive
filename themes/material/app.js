@@ -6,7 +6,7 @@ document.write('<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pl
 // markdown support
 document.write('<script src="//cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/markdown-it.min.js"></script>');
 document.write('<style>.mdui-list-item:hover{color: #212121; background-color: #FAFAFA !important;}.mdui-appbar .mdui-toolbar{height:56px;font-size:1pc}.mdui-toolbar>*{padding:0 6px;margin:0 2px}.mdui-toolbar>i{opacity:.5}.mdui-toolbar>.mdui-typo-headline{padding:0 1pc 0 0}.mdui-toolbar>i{padding:0}.mdui-toolbar>a:hover,a.active,a.mdui-typo-headline{opacity:1}.mdui-container{max-width:980px}.mdui-list-item{transition:none}.mdui-list>.th{background-color:initial}.mdui-list-item>a{width:100%;line-height:3pc}.mdui-list-item{margin:2px 0;padding:0}.mdui-toolbar>a:last-child{opacity:1}@media screen and (max-width:980px){.mdui-list-item .mdui-text-right{display:none}.mdui-container{width:100%!important;margin:0}.mdui-toolbar>.mdui-typo-headline,.mdui-toolbar>a:last-child,.mdui-toolbar>i:first-child{display:block}}</style>');
-if (dark) { document.write('<style>* {box-sizing: border-box}body{color:rgba(255,255,255,.87);background-color:#333232}.mdui-theme-primary-' + main_color + ' .mdui-color-theme{background-color:#232427!important}.buton { box - shadow: white 0px 0px 3px 0px; }</style>'); }
+if (dark) { document.write('<style>* {box-sizing: border-box}body{color:rgba(255,255,255,.87);background-color:#333232}.mdui-theme-primary-' + main_color + ' .mdui-color-theme{background-color:#232427!important}.buton{box-shadow: white 0px 0px 3px 0px;}</style>'); }
 // Initialize the page and load the necessary resources
 function init() {
     document.siteName = $('title').html();
@@ -358,17 +358,17 @@ function file_audio(path) {
 <div class="mdui-container-fluid">
     <br>
     <audio class="mdui-center" preload controls>
-      <source src="${url}"">
+      <source src="${url}">
     </audio>
     <br>
-    <div style="text-align: center;">
-        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, -60))">-60</button>
-        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, -30))">-30</button>
-        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, -10))">-10</button>
-        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, 'goto'))">GoTo</button>
-        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, 10))">+10</button>
-        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, 30))">+30</button>
-        <button class="mdui-btn mdui-m-x-1 buton" onclick="$('audio').each((i, o) => seek(o, 60))">+60</button>
+    <div style="width: fit-content" class="mdui-row mdui-center">
+        <button class="mdui-btn mdui-m-a-1 buton mdui-col-xs-1" onclick="$('audio').each((i, o) => seek(o, -60))">-60</button>
+        <button class="mdui-btn mdui-m-a-1 buton mdui-col-xs-1" onclick="$('audio').each((i, o) => seek(o, -30))">-30</button>
+        <button class="mdui-btn mdui-m-a-1 buton mdui-col-xs-1" onclick="$('audio').each((i, o) => seek(o, -10))">-10</button>
+        <button class="mdui-btn mdui-m-a-1 buton mdui-col-xs-11 mdui-col-sm-1" onclick="$('audio').each((i, o) => seek(o, 'goto'))">GoTo</button>
+        <button class="mdui-btn mdui-m-a-1 buton mdui-col-xs-1" onclick="$('audio').each((i, o) => seek(o, 10))">+10</button>
+        <button class="mdui-btn mdui-m-a-1 buton mdui-col-xs-1" onclick="$('audio').each((i, o) => seek(o, 30))">+30</button>
+        <button class="mdui-btn mdui-m-a-1 buton mdui-col-xs-1" onclick="$('audio').each((i, o) => seek(o, 60))">+60</button>
     </div>
     <br>
     <!-Fixed label->
