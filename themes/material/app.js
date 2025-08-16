@@ -182,9 +182,14 @@ function list_files(path, files) {
             }
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent) && ("|mp4|webm|avi|m4a|mp3|wav|ogg|mpg|mpeg|mkv|mov|wmv|asf|ts|flv|".indexOf(`|${ext}|`) >= 0)) {
                 var url_m = window.location.origin + path + encodeURIComponent(item.name);
+                
+                let intent_url = `intent:${url_m}#Intent;action=android.intent.action.VIEW;type=video/*;S.title=${item.name};end`;
+                
+                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent))
+                    intent_url = `vlc://${url_m}`
 
                 html += `<li class="mdui-list-item file mdui-ripple" target="_blank">
-                    <a href="intent:${url_m}#Intent;action=android.intent.action.VIEW;type=video/*;S.title=${item.name};end" onClick="copyIT('${url_m}'); vibrate(50);" style="line-height: 1; width: fit-content; text-align: center;">
+                    <a href="${intent_url}" onClick="copyIT('${url_m}'); vibrate(50);" style="line-height: 1; width: fit-content; text-align: center;">
                         <i class="mdui-icon material-icons">play_circle_filled</i>
                         <span class="size-tooltip" style="display: block; font-size: xx-small;margin: 2px 2px;">${msize.replace(' ', '')}</span>
                     </a>
